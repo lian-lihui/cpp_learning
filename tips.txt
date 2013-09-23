@@ -1,0 +1,16 @@
+Note: The following commands needs to be executed from /home/zhangkun/Development/Experiment/Lihui-Learning/CC 
+
+step1. Check status of the repo  
+       $> git status /home/zhangkun/Development/Experiment/Lihui-Learning/CC 
+
+Step2. Define files to be commited  
+       If untracked files, add all of them to the repository
+       If "Changes not staged", add all of them using the following command
+
+       $> git add <file-to-track>
+   
+Step3. Deliver all the changes to repository( locally ) 
+       $> git commit -m "<message for your self>" 
+
+Step4. Push the latest version to GitHub  
+       $> git push original master
