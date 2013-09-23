@@ -1,0 +1,43 @@
+#include <iostream>
+struct CandyBar
+{
+     char name[10];
+     double weight;
+     int calories;
+};
+
+const CandyBar & refen( CandyBar & input, char na[] = "Millennium Munch", double wgt = 2.85, int cal = 350 );
+void ShowStru( const CandyBar & input );
+using namespace std;
+
+int
+main()
+{
+    CandyBar choco;
+    char name0;
+    double weight0;
+    int calories0;
+    refen( choco, name0, weight0, calories0 );
+    ShowStru( choco );
+
+    return 0;
+}
+
+const CandyBar & refen( CandyBar & input, char * &na, double &wgt, int cal )
+{
+    cin>> na;
+    input.name = na;
+    cin>> wgt;
+    input.weight = wgt;
+    cin>> cal;
+    input.calories = cal;
+
+    return input;
+}
+
+void ShowStru( const CandyBar & input )
+{
+    cout<< "The name of this CandyBar is "<< input.name<< ", "
+        << "weight is "<< input.weight<< ", "<< "calories is "
+        << input.calories<< ". \n";
+}
