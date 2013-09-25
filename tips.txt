@@ -1,16 +1,56 @@
 Note: The following commands needs to be executed from /home/zhangkun/Development/Experiment/Lihui-Learning/CC 
 
-step1. Check status of the repo  
-       $> git status /home/zhangkun/Development/Experiment/Lihui-Learning/CC 
+1. How to deliver codes to gitHub 
+    step1. Check status of the repo  
+           $> git status /home/zhangkun/Development/Experiment/Lihui-Learning/CC 
+    
+    Step2. Define files to be commited  
+           If untracked files, add all of them to the repository
+           If "Changes not staged", add all of them using the following command
+    
+           $> git add <file-to-track>
+       
+    Step3. Deliver all the changes to repository( locally ) 
+           $> git commit -m "<message for your self>" 
+    
+    Step4. Push the latest version to GitHub  
+           $> git push original master
+    
+2. How to rebase from GitHub, rebase means download the latest changes from 
+   GitHub server, and solve the confilcts.     
 
-Step2. Define files to be commited  
-       If untracked files, add all of them to the repository
-       If "Changes not staged", add all of them using the following command
+   step1. Use git status to check current status of the repo. 
+          Make sure all the latest changes are commited. Commit all the files 
+          that are 'modified' 'statges' or 'untracked'
+          
+          $> git status . 
 
-       $> git add <file-to-track>
-   
-Step3. Deliver all the changes to repository( locally ) 
-       $> git commit -m "<message for your self>" 
+   step2. Pull the latest version from remote server on GitHub 
+     
+          $> git pull -u original master 
 
-Step4. Push the latest version to GitHub  
-       $> git push original master
+          Note: 
+          2.1 
+          in this step, you make asked to input some merge message. 'merge' means 
+          a file on the server is found different from the local version; so the two versions 
+          need to be merged together to get a complete version.   
+        
+          What's more complicated is that, differnt contributors may modify the same part of 
+          the file. In this case, a 'conflict' is found. If there aren't any conflicts, merging 
+          works can be done automatically( a.k.a 'auto-merge'), otherwise, if there are conflicts, 
+          it's the contributor's responsibility to decide how the different version shoulbe merged 
+          together. Most of the time, you will be asked to make choices on which parts whould be kept,
+          and which ones be abondoned.    
+
+          2.2 
+          In the upper command 'git pull -u original master', 'original' is not a keyword. 
+          It's a tag used in 'git remote add orginal https://https://github.com/lian-lihui/cpp_learning.git' 
+
+          In other words, if you previously used 'git remote add cpp-on-github https://github.com/lian-lihui/cpp_learning.git' 
+          you should use 'git pull -u cpp-on-githun master' to get the laster content from the remote server. 
+
+          Keep in mind that 'master' is the default( also is the first ) branch name when throwing lots of 
+          files into git repo by 'git init'. 
+
+          2.3 
+          Read the output of git commands carefully, from which you can usually get some instructions. 
