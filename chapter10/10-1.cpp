@@ -50,14 +50,24 @@ void Account::save( double num )
         deposit += num;
 }
 
-void Account::withdraw( double num )
+while ( withdraw( num ) ) {
+    cin>> num;
+}
+int 
+Account::withdraw( double num )
 {
-    if (num < 0)
+    if (num < 0) {
         std::cerr<< "Please enter an positive number.\n";
-    else if (num > deposit)
+        return 1;
+    }
+    else if (num > deposit) {
         cerr<< "You can't withdraw more money than the account number.\n";
-    else
+        return 1;
+    }
+    else {
         deposit -= num;
+        return 0;
+    }
 }
 
 void Account::show()const
