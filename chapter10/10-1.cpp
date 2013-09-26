@@ -5,9 +5,12 @@ using namespace std;
 class Account
 {
 private:
-    char name[30];
+    static const BUF_SIZE = 30; //In this way, if size of 'name' need to be increased later, increase BUF_SIZE is enoutgh;
+                                // No need to find all '30' and change them all. 
+    char name[ BUF_SIZE ];
     long account;
     double deposit;
+    
 public:
     Account();
     Account( const char * co, int n, double pr );
@@ -19,15 +22,15 @@ public:
 
 Account::Account()
 {
-    strcpy( name, "no name" );
+    strncpy( name, "no name", BUF_SIZE );
     account = 0;
     deposit = 0.0;
 }
 
 Account::Account( const char * co, int n, double pr )
 {
-    strncpy( name, co, 29 );
-    name[29] = '\0';
+    strncpy( name, co, BUF_SIZE );
+    name[BUF_SIZE - 1] = '\0';
 
     if (n < 0)
         cout<< "The bank account number can't be negative.\n";
