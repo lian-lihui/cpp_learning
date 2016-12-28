@@ -165,3 +165,28 @@ def AlexNet_Pooling( inputData, windowShape, stepShape = ( 1, 1) ):
                     if inputData[ win_i, win_j ] > result[i, j]:
                         result[i, j] = inputData[win_i, win_j]
     return result
+
+
+# ---------------------------------------------------------------------------------------------------------
+#    Norm
+# ---------------------------------------------------------------------------------------------------------
+def AlexNet_Norm( inputData, k, alpha, beta, n ) :
+    """ InputData: (g, x, y, c) """
+    if len( inputData.shape ) != 4:
+        sys.stderr.write( "Error: norm layer need to be 4 dimentional!\n" )
+        sys.exit( 1 )
+    
+    ret = NP.zeros( inputData.shape )
+    numGroup, height, width, numChannel = inputData.shape
+    for g in range( numGroup ):
+        for i in range( height ):
+            for j in range( width ):
+                for c in range( numChannel ):
+                    left  = max( 0, c - n//2 )
+                    right = min( numChannel - 1, c + n//2 )
+                    squareSum = 0
+                    for iterC in range( left, right ):
+                        squareSum = squareSum + inputData[g, i, j, iterC]*inputData[g, i, j, iterC]
+                    ret[g, i, j, c] = inputData[g, i, j, c]/pow( k + alpha*squareSum, beta )
+                
+    return ret;
