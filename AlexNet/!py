@@ -19,7 +19,7 @@ def conv1( ):
     fWeight.close( )
 
     # Do convolution
-    singleLayer.AlexNet_conv1( inputArr[NP.newaxis, :, :, :], weight, padding=False, crossGroup=True )
+    singleLayer.AlexNet_conv1( inputArr[NP.newaxis, :, :, :], weight )
 
 def relu1( ):
     """ relu1: input { g=2, x=55, y=55, c=48 } """
